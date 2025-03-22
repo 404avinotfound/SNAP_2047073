@@ -181,10 +181,33 @@ h2 {
     color: var(--text-dark);
 }
 
-[align="right"] {
-    text-align: right;
-    margin-right: 10%;
-    margin-bottom: 30px;
+.works-container {
+    position: fixed;
+    top: 80px; /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10%;
+    z-index: 99;
+    background: transparent; /* Completely transparent background */
+    /* Remove backdrop-filter as it's not needed for transparency */
+}
+
+.works-container div {
+    color: white; /* Keep text color white */
+    font-weight: bold;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7); /* Add text shadow to improve readability */
+}
+
+.works-container a {
+    color: white !important;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7); /* Add text shadow to improve readability */
+}
+
+/* Hide the original divs */
+[align="left"], [align="right"] {
+    display: none;
 }
 
 .product-container {
@@ -193,13 +216,14 @@ h2 {
     align-items: center;
     gap: 40px;
     padding: 20px;
+    margin-top: 60px; /* Add space for the fixed works container */
 }
 
 .category-section {
     width: 100%;
     display: flex;
     justify-content: center;
-    scroll-margin-top: 80px;
+    scroll-margin-top: 140px; /* Increased to account for fixed header + works container */
     min-height: 730px; /* product box height + some margin */
 }
 
@@ -287,7 +311,7 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: center;
-    scroll-margin-top: 80px;
+    scroll-margin-top: 140px; /* Increased to account for fixed header + works container */
     min-height: 430px;
 }
 
@@ -453,6 +477,11 @@ h2 {
         padding: 15px;
     }
     
+    .works-container {
+        top: 100px; /* Adjust for mobile header height */
+        padding: 10px 5%;
+    }
+    
     .footer {
         min-height: 300px;
     }
@@ -463,9 +492,11 @@ h2 {
     
     .category-section {
         min-height: 380px;
+        scroll-margin-top: 160px; /* Adjusted for mobile */
     }
     
     .normal-section {
         min-height: 280px;
+        scroll-margin-top: 160px; /* Adjusted for mobile */
     }
 }
