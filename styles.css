@@ -11,10 +11,21 @@
     --color-3: #da89ce;
     --color-4: #d2b06b;
     --color-5: #da5a5a;
-    --color-6: #6a9dd2; /* New color for jewelry */
+    --color-6: #6a9dd2;
     --default-bg: #f5f5f5;
     --text-dark: #333;
     --text-light: #fff;
+    --header-footer-bg: #343a40;
+}
+
+@keyframes backgroundColorCycle {
+    0% { background-color: var(--color-1); }
+    16.66% { background-color: var(--color-2); }
+    33.33% { background-color: var(--color-3); }
+    50% { background-color: var(--color-4); }
+    66.66% { background-color: var(--color-5); }
+    83.33% { background-color: var(--color-6); }
+    100% { background-color: var(--color-1); }
 }
 
 html {
@@ -22,53 +33,56 @@ html {
 }
 
 body {
-    background-color: var(--default-bg);
-    transition: background-color 0.8s ease;
     color: var(--text-dark);
 }
 
-/* Full page container to apply color changes */
+/* Full page container with randomizing background */
 #page-container {
     min-height: 100vh;
     position: relative;
-    background-color: var(--default-bg);
-    transition: background-color 0.8s ease;
+    animation: backgroundColorCycle 30s infinite;
     overflow-x: hidden;
 }
 
-/* Target-based color changes */
+/* Target-based color changes - these will override the animation when a section is targeted */
 #boots:target ~ #page-container,
 #boots:target {
+    animation: none;
     background-color: var(--color-1);
 }
 
 #tshirts:target ~ #page-container,
 #tshirts:target {
+    animation: none;
     background-color: var(--color-2);
 }
 
 #suits:target ~ #page-container,
 #suits:target {
+    animation: none;
     background-color: var(--color-3);
 }
 
 #bags:target ~ #page-container,
 #bags:target {
+    animation: none;
     background-color: var(--color-4);
 }
 
 #makeup:target ~ #page-container,
 #makeup:target {
+    animation: none;
     background-color: var(--color-5);
 }
 
 #jewelry:target ~ #page-container,
 #jewelry:target {
+    animation: none;
     background-color: var(--color-6);
 }
 
 .header {
-    background: #343a40;
+    background: var(--header-footer-bg);
     color: white;
     padding: clamp(10px, 5vw, 20px) clamp(20px, 8vw, 40px);
     display: flex;
@@ -129,12 +143,42 @@ body {
     text-decoration: underline;
 }
 
+/* Text color animation for main content when cycling through backgrounds */
+@keyframes textColorCycle {
+    0%, 50%, 100% { color: var(--text-light); }
+    16.66%, 66.66% { color: var(--text-dark); }
+    33.33%, 83.33% { color: var(--text-light); }
+}
+
+h2, .main-content a {
+    animation: textColorCycle 30s infinite;
+}
+
 h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2rem;
+}
+
+/* Override text color animation when sections are targeted */
+#boots:target ~ #page-container .main-content h2,
+#boots:target ~ #page-container .main-content a,
+#suits:target ~ #page-container .main-content h2,
+#suits:target ~ #page-container .main-content a,
+#makeup:target ~ #page-container .main-content h2,
+#makeup:target ~ #page-container .main-content a,
+#jewelry:target ~ #page-container .main-content h2,
+#jewelry:target ~ #page-container .main-content a {
+    animation: none;
+    color: var(--text-light);
+}
+
+#tshirts:target ~ #page-container .main-content h2,
+#tshirts:target ~ #page-container .main-content a,
+#bags:target ~ #page-container .main-content h2,
+#bags:target ~ #page-container .main-content a {
+    animation: none;
     color: var(--text-dark);
-    transition: color 0.8s ease;
 }
 
 [align="right"] {
@@ -196,12 +240,12 @@ h2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Remove the scale(0.7) */
+    transform: translate(-50%, -50%);
     width: 60%;
     height: 60%;
     z-index: 2;
     opacity: 0;
-    transition: opacity 0.5s ease;  /* Remove transform from transition */
+    transition: opacity 0.5s ease;
     border: 3px solid white;
     border-radius: 10px;
     overflow: hidden;
@@ -289,7 +333,7 @@ h2 {
 }
 
 .footer {
-    background: #343a40;
+    background: var(--header-footer-bg);
     color: white;
     padding: 20px 40px;
     text-align: center;
@@ -304,7 +348,7 @@ h2 {
     transition: background-color 0.8s ease;
 }
 
-/* Footer color changes */
+/* Footer color changes for targeted sections */
 #boots:target ~ #page-container .footer {
     background-color: #8a6da2;
 }
@@ -327,25 +371,6 @@ h2 {
 
 #jewelry:target ~ #page-container .footer {
     background-color: #4c7099;
-}
-
-/* Text color changes based on background */
-#boots:target ~ #page-container .main-content h2,
-#boots:target ~ #page-container .main-content a,
-#suits:target ~ #page-container .main-content h2,
-#suits:target ~ #page-container .main-content a,
-#makeup:target ~ #page-container .main-content h2,
-#makeup:target ~ #page-container .main-content a,
-#jewelry:target ~ #page-container .main-content h2,
-#jewelry:target ~ #page-container .main-content a {
-    color: var(--text-light);
-}
-
-#tshirts:target ~ #page-container .main-content h2,
-#tshirts:target ~ #page-container .main-content a,
-#bags:target ~ #page-container .main-content h2,
-#bags:target ~ #page-container .main-content a {
-    color: var(--text-dark);
 }
 
 /* Category navigation */
