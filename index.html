@@ -7,103 +7,141 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Anchor points for CSS :target selector -->
-    <div id="boots"></div>
-    <div id="tshirts"></div>
-    <div id="suits"></div>
-    <div id="bags"></div>
-    <div id="makeup"></div>
-    
-    <header class="header">
-        <div>Shop Luxury</div>
-        <div>Modern Collections</div>
-        
-    </header>
+    <div id="page-container">
+        <header class="header">
+            <div>Shop Luxury</div>
+            <div> Hybrid </div>
+            <div>Modern Collections</div>
+        </header>
 
-    <div class="main-content">
-        <h2>Shop by Category<br><br><br><br><br><br><br><br><br><br><br></h2>
-        <div allign = 'right'><a href="#">View All Selected Works</a></div>
-        
-        <div class="product-container">
-            <div class="product-box" data-category="boots" id="box1">
-                <a href="#boots" class="scroll-trigger"></a>
-                <img src="image1.avif" alt="Boots" class="product-background">
-                <div class="product-video">
-                    <video autoplay muted loop>
-                        <source src="#" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Luxury Boots</h3>
-                    <p class="product-description">Premium leather boots for all occasions</p>
-                </div>
-            </div>
+        <div class="main-content">
+            <h2>Shop by Category</h2>
+            <div align="left">Selected Works</div>
+            <div align="right"><a href="#">View All Selected Works</a></div>
             
-            <div class="product-box" data-category="tshirts" id="box2">
-                <a href="#tshirts" class="scroll-trigger"></a>
-                <img src="image2.avif" alt="T-Shirts" class="product-background">
-                <div class="product-video">
-                    <video autoplay muted loop>
-                        <source src="#" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Designer T-Shirts</h3>
-                    <p class="product-description">Contemporary styles for modern fashion</p>
-                </div>
-            </div>
-            
-            <div class="product-box" data-category="suits" id="box3">
-                <a href="#suits" class="scroll-trigger"></a>
-                <img src="image3.avif" alt="Ladies Suits" class="product-background">
-                <div class="product-video">
-                    <video autoplay muted loop>
-                        <source src="#" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Ladies Suits</h3>
-                    <p class="product-description">Elegant suits for professional settings</p>
-                </div>
-            </div>
-            
-            <div class="product-box" data-category="bags" id="box4">
-                <a href="#bags" class="scroll-trigger"></a>
-                <img src="image4.avif" alt="Ladies Bags" class="product-background">
-                <div class="product-video">
-                    <video autoplay muted loop>
-                        <source src="#" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Luxury Handbags</h3>
-                    <p class="product-description">Stylish bags for any occasion</p>
-                </div>
-            </div>
-            
-            <div class="product-box" data-category="makeup" id="box5">
-                <a href="#makeup" class="scroll-trigger"></a>
-                <img src="image5.avif" alt="Makeup Kits" class="product-background">
-                <div class="product-video">
-                    <video autoplay muted loop>
-                        <source src="#" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Premium Makeup Kits</h3>
-                    <p class="product-description">High-quality cosmetics for your beauty routine</p>
-                </div>
+            <div class="product-container">
+                <!-- Each section has its own container -->
+                <section id="boots" class="category-section">
+                    <div class="product-box" data-category="boots">
+                        <img src="images/image1.avif" alt="Boots" class="product-background">
+                        <div class="product-video">
+                            <video autoplay muted loop>
+                                <source src="Videos/vid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Boots</h3>
+                            <p class="product-description">Premium leather boots for all occasions</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="tshirts" class="category-section">
+                    <div class="product-box" data-category="tshirts">
+                        <img src="images/image2.avif" alt="T-Shirts" class="product-background">
+                        <div class="product-video">
+                            <video autoplay muted loop>
+                                <source src="Videos/vid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Designer T-Shirts</h3>
+                            <p class="product-description">Contemporary styles for modern fashion</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="suits" class="category-section">
+                    <div class="product-box" data-category="suits">
+                        <img src="images/image3.avif" alt="Ladies Suits" class="product-background">
+                        <div class="product-video">
+                            <video autoplay muted loop>
+                                <source src="Videos/vid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Ladies Suits</h3>
+                            <p class="product-description">Elegant suits for professional settings</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="bags" class="category-section">
+                    <div class="product-box" data-category="bags">
+                        <img src="images/image4.avif" alt="Ladies Bags" class="product-background">
+                        <div class="product-video">
+                            <video autoplay muted loop>
+                                <source src="Videos/vid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Handbags</h3>
+                            <p class="product-description">Stylish bags for any occasion</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="makeup" class="category-section">
+                    <div class="product-box" data-category="makeup">
+                        <img src="images/image5.avif" alt="Makeup Kits" class="product-background">
+                        <div class="product-video">
+                            <video autoplay muted loop>
+                                <source src="Videos/vid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Makeup Kits</h3>
+                            <p class="product-description">High-quality cosmetics for your beauty routine</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- New 6th section -->
+                <section id="jewelry" class="category-section">
+                    <div class="product-box" data-category="jewelry">
+                        <img src="images/image6.avif" alt="Luxury Jewelry" class="product-background">
+                        <div class="product-video">
+                            <video autoplay muted loop>
+                                <source src="Videos/vid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Jewelry</h3>
+                            <p class="product-description">Elegant pieces to complete your collection</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Normal box with no hover effect -->
+                <section class="normal-section">
+                    <div class="normal-box">
+                        <img src="images/image7.avif" alt="Featured Products" class="normal-background">
+                        <div class="normal-info">
+                            
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
-    </div>
 
-    <footer class="footer">
-        <div>Contact Information: Team Hybrid | +91 XXXXXXXXXX</div>
-    </footer>
+        <footer class="footer">
+            <div>Contact Information: Team Hybrid | +91 XXXXXXXXXX</div>
+        </footer>
+
+        <nav class="category-nav">
+            <a href="#boots">Boots</a>
+            <a href="#tshirts">T-Shirts</a>
+            <a href="#suits">Suits</a>
+            <a href="#bags">Bags</a>
+            <a href="#makeup">Makeup</a>
+            <a href="#jewelry">Jewelry</a>
+        </nav>
+    </div>
 </body>
 </html>

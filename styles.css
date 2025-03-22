@@ -11,34 +11,60 @@
     --color-3: #da89ce;
     --color-4: #d2b06b;
     --color-5: #da5a5a;
-    --scroll-color: var(--color-1);
+    --color-6: #6a9dd2; /* New color for jewelry */
+    --default-bg: #f5f5f5;
+    --text-dark: #333;
+    --text-light: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #f5f5f5;
-    scroll-behavior: smooth;
-    transition: background-color 0.5s ease;
+    background-color: var(--default-bg);
+    transition: background-color 0.8s ease;
+    color: var(--text-dark);
 }
 
-/* Target-based background color change */
-body:has(#boots:target) {
+/* Full page container to apply color changes */
+#page-container {
+    min-height: 100vh;
+    position: relative;
+    background-color: var(--default-bg);
+    transition: background-color 0.8s ease;
+    overflow-x: hidden;
+}
+
+/* Target-based color changes */
+#boots:target ~ #page-container,
+#boots:target {
     background-color: var(--color-1);
 }
 
-body:has(#tshirts:target) {
+#tshirts:target ~ #page-container,
+#tshirts:target {
     background-color: var(--color-2);
 }
 
-body:has(#suits:target) {
+#suits:target ~ #page-container,
+#suits:target {
     background-color: var(--color-3);
 }
 
-body:has(#bags:target) {
+#bags:target ~ #page-container,
+#bags:target {
     background-color: var(--color-4);
 }
 
-body:has(#makeup:target) {
+#makeup:target ~ #page-container,
+#makeup:target {
     background-color: var(--color-5);
+}
+
+#jewelry:target ~ #page-container,
+#jewelry:target {
+    background-color: var(--color-6);
 }
 
 .header {
@@ -53,30 +79,68 @@ body:has(#makeup:target) {
     z-index: 100;
     flex-wrap: wrap;
     min-height: 60px;
+    transition: background-color 0.8s ease;
+}
+
+/* Specific header colors for each target */
+#boots:target ~ #page-container .header {
+    background-color: #8a6da2;
+}
+
+#tshirts:target ~ #page-container .header {
+    background-color: #5ca85a;
+}
+
+#suits:target ~ #page-container .header {
+    background-color: #a16599;
+}
+
+#bags:target ~ #page-container .header {
+    background-color: #9e844f;
+}
+
+#makeup:target ~ #page-container .header {
+    background-color: #a04343;
+}
+
+#jewelry:target ~ #page-container .header {
+    background-color: #4c7099;
 }
 
 .header div {
     padding: 5px;
 }
 
-.header a {
-    color: white;
-    text-decoration: none;
-}
-
-.header a:hover {
-    text-decoration: underline;
-}
-
 .main-content {
+    min-height: 100vh;
     padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.main-content a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.main-content a:hover {
+    text-decoration: underline;
 }
 
 h2 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2rem;
-    color: #333;
+    color: var(--text-dark);
+    transition: color 0.8s ease;
+}
+
+[align="right"] {
+    text-align: right;
+    margin-right: 10%;
+    margin-bottom: 30px;
 }
 
 .product-container {
@@ -85,7 +149,14 @@ h2 {
     align-items: center;
     gap: 40px;
     padding: 20px;
-    scroll-snap-type: y mandatory;
+}
+
+.category-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    scroll-margin-top: 80px;
+    min-height: 730px; /* product box height + some margin */
 }
 
 .product-box {
@@ -97,8 +168,6 @@ h2 {
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-    scroll-snap-align: center;
-    scroll-margin-top: 70px;
 }
 
 .product-box:hover {
@@ -127,12 +196,12 @@ h2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.7);
+    transform: translate(-50%, -50%); /* Remove the scale(0.7) */
     width: 60%;
     height: 60%;
     z-index: 2;
     opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease;  /* Remove transform from transition */
     border: 3px solid white;
     border-radius: 10px;
     overflow: hidden;
@@ -141,7 +210,6 @@ h2 {
 
 .product-box:hover .product-video {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
 }
 
 .product-info {
@@ -170,6 +238,56 @@ h2 {
     opacity: 0.8;
 }
 
+/* Normal box styles (no hover effects) */
+.normal-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    scroll-margin-top: 80px;
+    min-height: 430px;
+}
+
+.normal-box {
+    position: relative;
+    width: 80%;
+    max-width: 2000px;
+    height: 800px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.normal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.normal-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: white;
+    z-index: 3;
+}
+
+.normal-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.normal-description {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
 .footer {
     background: #343a40;
     color: white;
@@ -183,8 +301,92 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.8s ease;
 }
 
+/* Footer color changes */
+#boots:target ~ #page-container .footer {
+    background-color: #8a6da2;
+}
+
+#tshirts:target ~ #page-container .footer {
+    background-color: #5ca85a;
+}
+
+#suits:target ~ #page-container .footer {
+    background-color: #a16599;
+}
+
+#bags:target ~ #page-container .footer {
+    background-color: #9e844f;
+}
+
+#makeup:target ~ #page-container .footer {
+    background-color: #a04343;
+}
+
+#jewelry:target ~ #page-container .footer {
+    background-color: #4c7099;
+}
+
+/* Text color changes based on background */
+#boots:target ~ #page-container .main-content h2,
+#boots:target ~ #page-container .main-content a,
+#suits:target ~ #page-container .main-content h2,
+#suits:target ~ #page-container .main-content a,
+#makeup:target ~ #page-container .main-content h2,
+#makeup:target ~ #page-container .main-content a,
+#jewelry:target ~ #page-container .main-content h2,
+#jewelry:target ~ #page-container .main-content a {
+    color: var(--text-light);
+}
+
+#tshirts:target ~ #page-container .main-content h2,
+#tshirts:target ~ #page-container .main-content a,
+#bags:target ~ #page-container .main-content h2,
+#bags:target ~ #page-container .main-content a {
+    color: var(--text-dark);
+}
+
+/* Category navigation */
+.category-nav {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.category-nav a {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    text-indent: -9999px;
+    overflow: hidden;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.category-nav a:hover {
+    transform: scale(1.5);
+}
+
+#boots:target ~ #page-container .category-nav a[href="#boots"],
+#tshirts:target ~ #page-container .category-nav a[href="#tshirts"],
+#suits:target ~ #page-container .category-nav a[href="#suits"],
+#bags:target ~ #page-container .category-nav a[href="#bags"],
+#makeup:target ~ #page-container .category-nav a[href="#makeup"],
+#jewelry:target ~ #page-container .category-nav a[href="#jewelry"] {
+    transform: scale(1.5);
+    background-color: #333;
+}
+
+/* Product box background colors */
 .product-box[data-category="boots"] {
     background-color: var(--color-1);
 }
@@ -205,26 +407,8 @@ h2 {
     background-color: var(--color-5);
 }
 
-/* Make scroll trigger links cover the full product box */
-.scroll-trigger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 4;
-}
-
-/* Alternative approach using scroll-snap visibility */
-@media (min-height: 800px) {
-    .product-container {
-        scroll-padding-top: 70px;
-    }
-    
-    /* Proximity-based scroll snap for smoother transitions */
-    html {
-        scroll-snap-type: y proximity;
-    }
+.product-box[data-category="jewelry"] {
+    background-color: var(--color-6);
 }
 
 @media (max-width: 768px) {
@@ -233,33 +417,30 @@ h2 {
         height: 350px;
     }
     
+    .normal-box {
+        width: 1100px;
+        height: 600px;
+    }
+    
     .header {
         flex-direction: column;
         gap: 10px;
         padding: 15px;
     }
-}
-
-/* For browsers that support intersection observer alternative */
-@supports (selector(:has(*))) {
-    /* Add scroll-based color changes without needing JavaScript */
-    body:has(.product-box[data-category="boots"]:is(:target, .in-view)) {
-        background-color: var(--color-1);
+    
+    .footer {
+        min-height: 300px;
     }
     
-    body:has(.product-box[data-category="tshirts"]:is(:target, .in-view)) {
-        background-color: var(--color-2);
+    .category-nav {
+        right: 10px;
     }
     
-    body:has(.product-box[data-category="suits"]:is(:target, .in-view)) {
-        background-color: var(--color-3);
+    .category-section {
+        min-height: 380px;
     }
     
-    body:has(.product-box[data-category="bags"]:is(:target, .in-view)) {
-        background-color: var(--color-4);
-    }
-    
-    body:has(.product-box[data-category="makeup"]:is(:target, .in-view)) {
-        background-color: var(--color-5);
+    .normal-section {
+        min-height: 280px;
     }
 }
